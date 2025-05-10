@@ -4,8 +4,8 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: 'interchange.proxy.rlwy.net',
   user: 'root',
-  password: 'wgzPWNygKXznAezuoXHnSQOOsXWRLUJX', // Sin contraseña por defecto en XAMPP
-  database: 'registro_app', // Asegúrate de crear esta DB en phpMyAdmin
+  password: 'wgzPWNygKXznAezuoXHnSQOOsXWRLUJX', 
+  database: 'registro_app', // DB en phpMyAdmin
   connectionTimeout: 30000
 });
 
