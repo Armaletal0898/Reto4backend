@@ -132,5 +132,5 @@ app.delete('/delete-location/:driverId', (req, res) => {
 // --------------------- INICIAR SERVIDOR ---------------------
 
 app.listen(PORT, () => {
-  console.log(`Servidor backend escuchando en http://0.0.0.0:${PORT}`);
+  console.log(`Servidor backend escuchando en http://localhost:${PORT}`);
 });
