@@ -2,11 +2,11 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: 'interchange.proxy.rlwy.net',
-  user: 'root',
-  password: 'wgzPWNygKXznAezuoXHnSQOOsXWRLUJX', 
+  host: process.env.HOSTDB || 'interchange.proxy.rlwy.net',
+  user: process.env.USERDB || 'root',
+  password: process.env.PASSWORDDB || 'wgzPWNygKXznAezuoXHnSQOOsXWRLUJX', 
   database: 'registro_app', // DB en phpMyAdmin
-  connectionTimeout: 30000
+  port: process.env.PROTDB || 3306,
 });
 
 connection.connect((err) => {
