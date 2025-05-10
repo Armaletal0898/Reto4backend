@@ -7,6 +7,7 @@ const connection = mysql.createConnection({
   user: 'root',
   password: 'wgzPWNygKXznAezuoXHnSQOOsXWRLUJX', // Sin contraseña por defecto en XAMPP
   database: 'registro_app' // Asegúrate de crear esta DB en phpMyAdmin
+  connectionTimeout: 30000
 });
 
 connection.connect((err) => {
