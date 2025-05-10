@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
   host: 'reto4backend-production.up.railway.app',
   user: 'root',
   password: 'wgzPWNygKXznAezuoXHnSQOOsXWRLUJX', // Sin contraseña por defecto en XAMPP
-  database: 'registro_app' // Asegúrate de crear esta DB en phpMyAdmin
+  database: 'registro_app', // Asegúrate de crear esta DB en phpMyAdmin
   connectionTimeout: 30000
 });
 
