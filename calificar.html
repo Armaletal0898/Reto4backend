@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moto-Ruta</title>
+  <link rel="stylesheet" href="styles-common.css">
+  <link rel="stylesheet" href="styles-calificar.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-text"><span class="logo-text-secondary">Moto</span>Ruta</span>
+    </a>
+      <nav class="nav-desktop">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="index.html#conductores" class="nav-link">Conductores</a>
+        <div class="nav-link services-dropdown">
+          Servicios
+          <div class="dropdown-content">
+            <a href="calcular-ruta.html" class="dropdown-item">Calcular Ruta</a>
+            <a href="calificar.html" class="dropdown-item">Calificar Servicio</a>
+          </div>
+        </div>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+        <div class="nav-buttons">
+          <a href="login.html" id="authButton" class="btn btn-outline btn-sm">Iniciar Sesión</a>
+          <a href="registro.html" id="registerButton" class="btn btn-primary btn-sm">Registrarse</a>
+        </div>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">
+        <i data-feather="menu"></i>
+      </button>
+    </div>
+  
+  </header>
+
+  <!-- Reseñas de Usuarios -->
+  
+  <section class="rating-section">
+      <div class="container">
+        <h2>Califica Nuestro Servicio</h2>
+        <p class="section-desc">Tu opinión nos ayuda a mejorar la calidad del servicio y reconocer a los mejores motoristas</p>
+        
+        <!-- Mensaje de éxito (se mostrará solo cuando se envíe una calificación) -->
+        <div id="successMessage" class="success-message" style="display: none;">
+          <i class="fas fa-check-circle"></i>
+          <p>¡Gracias por tu calificación! Tu opinión es muy importante para nosotros.</p>
+        </div>
+        
+        <div class="rating-overview">
+          <div class="rating-summary">
+            <h3>Reseñas generales:</h3>
+            <div class="rating-status">
+              <span class="rating-count">(<span id="total-reseñas">0</span> reseñas)</span>
+            </div>
+          </div>
+        </div>
+        
+        
+        
+        
+        <!-- Formulario para dejar reseña -->
+        <div class="review-form-container" id="reviewFormContainer" style="display:none;">
+          <h3>Escribe tu reseña</h3>
+          <form id="ratingForm" action="enviar-calificacion.php" method="POST">
+            <input type="hidden" id="ratingValue" name="rating" value="0">
+            <input type="hidden" id="recommendValue" name="recommend" value="1">
+            <div class="review-rating">
+              <p>¿Cómo calificarías tu experiencia?</p>
+              <div class="stars-container">
+                <i class="far fa-star star" data-value="1"></i>
+                <i class="far fa-star star" data-value="2"></i>
+                <i class="far fa-star star" data-value="3"></i>
+                <i class="far fa-star star" data-value="4"></i>
+                <i class="far fa-star star" data-value="5"></i>
+              </div>
+            </div>
+            <div class="review-comment">
+              <p>Escribe tu reseña detallada (opcional):</p>
+              <textarea name="comment" id="commentText" rows="5" placeholder="Comparte tu experiencia con otros usuarios..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Publicar reseña
+            </button>
+          </form>
+        </div>
+        <!-- Mensaje para usuarios no autenticados -->
+        <div id="loginMessage" class="login-message" style="display:none;">
+          <p>Debes <a href="login.html">iniciar sesión</a> para dejar una reseña.</p>
+        </div>
+        <!-- Reseñas existentes -->
+        <div class="reviews-container" id="reviews-container">
+          <h3>Reseñas más útiles</h3>
+          <!-- Aquí se cargarán las reseñas dinámicamente -->
+        </div>    
+      </div>        
+    </section>
+
+    
+
+    <!-- Pie de página -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-info">
+            <h3 class="footer-logo"><span class="text-secondary">Moto</span>Ruta</h3>
+            <p>Conectando motoristas y pasajeros en Cristo Rey para viajes rápidos, seguros y económicos.</p>
+            <div class="social-links">
+              <a href="#" class="social-link"><i data-feather="facebook"></i></a>
+              <a href="#" class="social-link"><i data-feather="twitter"></i></a>
+              <a href="#" class="social-link"><i data-feather="instagram"></i></a>
+            </div>
+          </div>
+          
+          <div class="footer-links">
+            <h3>Enlaces Rápidos</h3>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="registro.html">Regístrate</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-links">
+            <h3>Servicios</h3>
+            <ul>
+              <li><a href="calcular-ruta.html">Calcular distancia y precio</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-contact">
+            <h3>Contacto</h3>
+            <ul>
+              <li><i data-feather="map-pin"></i> Cristo Rey, Santo Domingo</li>
+              <li><i data-feather="smartphone"></i> +1 (809) 555-1234</li>
+              <li><i data-feather="mail"></i> techpulse943@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; <span id="currentYear"></span> MotoRuta. Todos los derechos reservados.</p>
+          <div class="footer-legal">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Preguntas Frecuentes</a>
+          </div>
+        </div>
+      </div>
+     </footer>
+  
+
+
+
+     
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace();
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Transición suave al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+  
+    // Transición suave al hacer clic en enlaces
+    document.querySelectorAll('a').forEach(link => {
+      // Evita interceptar el botón de autenticación
+      if (link.id === "authButton") return;
+      link.addEventListener('click', function(e) {
+        if (this.href.includes(window.location.origin)) {
+          e.preventDefault();
+          document.body.style.opacity = '0';
+          setTimeout(() => {
+            window.location.href = this.href;
+          }, 500);
+        }
+      });
+    });
+
+
+
+
+    //Creacion de token para iniciar y cerrar sesion y tambien para quitar el boton de registro
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem("token");
+      const authButton = document.getElementById("authButton");
+      const registerButton = document.getElementById("registerButton");
+      const reviewFormContainer = document.getElementById("reviewFormContainer");
+      const loginMessage = document.getElementById("loginMessage");
+
+      // Limpia listeners previos
+      const newAuthButton = authButton.cloneNode(true);
+      authButton.parentNode.replaceChild(newAuthButton, authButton);
+
+      if (token) {
+        newAuthButton.textContent = "Cerrar Sesión";
+        newAuthButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("token");
+          window.location.href = "login.html";
+        });
+        reviewFormContainer.style.display = "block";
+        loginMessage.style.display = "none";
+        if (registerButton) registerButton.style.display = "none";
+      } else {
+        newAuthButton.textContent = "Iniciar Sesión";
+        newAuthButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = "login.html";
+        });
+        reviewFormContainer.style.display = "none";
+        loginMessage.style.display = "block";
+        if (registerButton) registerButton.style.display = "";
+      }
+    });
+    
+    // Manejo de estrellas
+    const stars = document.querySelectorAll('.star');
+    const ratingValue = document.getElementById('ratingValue');
+    
+    stars.forEach((star, index) => {
+      star.addEventListener('click', function() {
+        // Actualizar valor del rating
+        const value = this.getAttribute('data-value');
+        ratingValue.value = value;
+        
+        // Actualizar estrellas
+        stars.forEach((s, i) => {
+          if (i < value) {
+            s.classList.remove('far');
+            s.classList.add('fas');
+          } else {
+            s.classList.remove('fas');
+            s.classList.add('far');
+          }
+        });
+      });
+    });
+
+
+    
+    
+    // Manejo de botones de recomendación
+    const recommendButtons = document.querySelectorAll('.btn-recommend');
+    const recommendValue = document.getElementById('recommendValue');
+    
+    recommendButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const value = this.getAttribute('data-value');
+        recommendValue.value = value;
+        
+        // Actualizar botones
+        recommendButtons.forEach(btn => {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+
+
+
+    
+    // Manejo del formulario
+    const ratingForm = document.getElementById('ratingForm');
+    const successMessage = document.getElementById('successMessage');
+
+    ratingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Verificar si se ha seleccionado una calificación
+      if (ratingValue.value === '0') {
+        alert('Por favor, selecciona una calificación con estrellas');
+        return;
+      }
+
+      // Enviar formulario por AJAX
+      const formData = new FormData(ratingForm);
+      fetch('enviar-calificacion.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.text())
+      .then(result => {
+        // Mostrar mensaje de éxito en la página
+        successMessage.style.display = 'block';
+        // Limpiar el formulario
+        ratingForm.reset();
+        ratingValue.value = '0';
+        // Opcional: recargar reseñas y contador
+        fetch('obtener-reseñas.php')
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById('reviews-container').innerHTML = '<h3>Reseñas más útiles</h3>' + html;
+          });
+        fetch('contar-reseñas.php')
+          .then(response => response.text())
+          .then(total => {
+            document.getElementById('total-reseñas').textContent = total;
+          });
+      });
+    });   
+  </script>
+
+
+
+  <script>
+    let offset = 0;
+    const limit = 5;
+    
+    function cargarReseñas(mas = false) {
+      fetch(`obtener-reseñas.php?offset=${offset}&limit=${limit}`)
+        .then(response => response.text())
+        .then(html => {
+          if (mas) {
+            // Quita el botón anterior antes de agregar más reseñas
+            const btn = document.getElementById('ver-mas-reseñas');
+            if (btn) btn.remove();
+            document.getElementById('reviews-container').innerHTML += html;
+          } else {
+            document.getElementById('reviews-container').innerHTML = '<h3>Reseñas más útiles</h3>' + html;
+          }
+          // Si aparece el botón, agrega el evento
+          const btn = document.getElementById('ver-mas-reseñas');
+          if (btn) {
+            btn.addEventListener('click', function() {
+              offset += limit; // Mueve esto ANTES de llamar a cargarReseñas
+              cargarReseñas(true);
+            });
+          }
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      cargarReseñas();
+    });
+    </script>
+
+    
+    <!--Cargar cantidad de reseñas generales -->
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem("token");
+      const ratingCount = document.querySelector('.rating-count');
+      if (ratingCount) {
+        if (token) {
+          ratingCount.style.display = "inline";
+          // Fetch and show the review count
+          fetch('contar-reseñas.php')
+            .then(response => response.text())
+            .then(total => {
+              document.getElementById('total-reseñas').textContent = total;
+            });
+        } else {
+          ratingCount.style.display = "none";
+        }
+      }
+    });
+
+    </script>
+
+
+
+  <!-- CHATBOT CON BOTPRESS --> 
+    
+  <style>
+     /* contenedor padre tenga position: relative */
+     .container {
+       position: relative;
+     }
+     #webchat {
+      position: fixed !important;   /* Use fixed for FAB and chat together */
+      right: 40px;
+      bottom: 120px;                /* Increase this value to move it up */
+      z-index: 9999;
+      width: 370px !important;
+      height: 650px !important;
+      border-radius: 28px !important;
+      overflow: hidden;
+      font-family: 'Montserrat', 'Inter', sans-serif !important;
+    }
+    #webchat .bpWebchat {
+      position: unset;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      max-width: 100%;
+    }
+    @media (max-width: 600px) {
+      #webchat {
+        width: 98vw !important;
+        height: 90vh !important;
+        right: 1vw;
+        bottom: 1vw;
+        border-radius: 18px !important;
+      }
+      #webchat .bpWebchat {
+        border-radius: 18px !important;
+      }
+    }
+  </style>
+
+  <div id="webchat"></div>
+  
+  <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
+  <script>
+      window.botpress.init({
+      "botId": "00ea9fab-6c35-4bea-bd95-5f6719332ea9",
+      "configuration": {
+        "botName": "Bot Motochat",
+        "botAvatar": "https://files.bpcontent.cloud/2025/02/19/03/20250219033125-8URKEHTA.jpeg",
+        "botDescription": "Un asistente dedicado para ti ",
+        "color": "#003a73",
+        "variant": "solid",
+        "themeMode": "dark",
+        "fontFamily": "inter",
+        "radius": 4,
+        "additionalStylesheetUrl": "https://files.bpcontent.cloud/2025/05/08/04/20250508043948-KACYVQ53.css"
+      },
+      "clientId": "49464f5e-83af-42a9-90f3-24e0de96ecdb",
+      "selector": "#webchat"
+    });
+  </script>
+  
+   
+    
+</body>
+</html>

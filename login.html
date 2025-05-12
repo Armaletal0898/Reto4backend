@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moto-Ruta</title>
+  <link rel="stylesheet" href="styles-common.css" />
+  <link rel="stylesheet" href="styles-login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  
+  <!-- Botón para regresar al inicio -->
+  <a href="index.html" class="back-home-btn">
+    <i class="fas fa-arrow-left"></i> Volver al inicio
+  </a>
+
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="logo" style="justify-content: center;">
+          <span class="logo-text"><span class="text-secondary">Moto Ruta</span></span>
+        </div>
+        <h2>Iniciar Sesión</h2>
+        <p>Bienvenido de nuevo</p>
+      </div>
+
+      <form class="login-form" id="loginForm">
+        <div id="loginError" style="display:none; color:#ff4d4f; margin-bottom:10px; text-align:center;"></div>
+        <div class="form-group">
+          <label for="email">
+            <i class="fas fa-envelope"></i> Correo Electrónico
+          </label>
+          <input type="email" id="email" placeholder="ejemplo@correo.com" required aria-label="Correo Electrónico" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">
+            <i class="fas fa-lock"></i> Contraseña
+          </label>
+          <input type="password" id="password" placeholder="••••••••" required aria-label="Contraseña" />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">
+          <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <p>¿No tienes una cuenta? <a href="registro.html">Regístrate</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Transición suave al cargar
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+
+    // Transición suave en enlaces
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        if (this.href.includes(window.location.origin)) {
+          e.preventDefault();
+          document.body.style.opacity = '0';
+          setTimeout(() => {
+            window.location.href = this.href;
+          }, 500);
+        }
+      });
+    });
+
+    // Manejo del login
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const loginError = document.getElementById('loginError');
+
+      // Validación del correo electrónico
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(email)) {
+        alert('Por favor, ingresa un correo electrónico válido.');
+        return;
+      }
+
+      // Mostrar carga mientras se procesa la solicitud
+      const loginButton = document.querySelector('.btn.btn-primary');
+      loginButton.disabled = true;
+      loginButton.innerHTML = 'Cargando...';
+
+      try {
+        const response = await fetch('https://triumphant-insight-motoconcho.up.railway.app', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          localStorage.setItem('token', result.token);
+          window.location.href = "index.html";
+        } else {
+          // Mostrar error en el formulario
+          if (loginError) {
+            loginError.textContent = result.error || 'Error al iniciar sesión';
+            loginError.style.display = 'block';
+          }
+        }
+      } catch (error) {
+        if (loginError) {
+          loginError.textContent = 'Error al conectar con el servidor';
+          loginError.style.display = 'block';
+        }
+        console.error(error);
+      } finally {
+        loginButton.disabled = false;
+        loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión';
+      }
+    });
+
+    // Verificar si el usuario ya está autenticado
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        // Si ya hay un token, redirige a la página principal
+        window.location.href = "index.html";
+      }
+    });
+  </script>
+</body>
+</html>

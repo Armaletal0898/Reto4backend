@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moto-Ruta</title>
+  <link rel="stylesheet" href="styles-common.css">
+  <link rel="stylesheet" href="styles-login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Botón para regresar al inicio -->
+    <a href="index.html" class="back-home-btn">
+      <i class="fas fa-arrow-left"></i> Volver al inicio
+    </a>
+
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="logo" style="justify-content: center;">
+          <span class="logo-text"><span class="text-secondary">Moto Ruta</span></span>
+        </div>
+        <h2>Crear Cuenta</h2>
+        <p>Únete a nuestra comunidad</p>
+      </div>
+      
+      <form class="login-form" id="registroForm">
+        <div class="form-group">
+          <label for="nombre">
+            <i class="fas fa-user"></i>
+            Nombre Completo
+          </label>
+          <input type="text" id="nombre" placeholder="Juan Pérez" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <i class="fas fa-envelope"></i>
+            Correo Electrónico
+          </label>
+          <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="telefono">
+            <i class="fas fa-phone"></i>
+            Teléfono
+          </label>
+          <input type="tel" id="telefono" placeholder="(809) 555-1234" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">
+            <i class="fas fa-lock"></i>
+            Contraseña
+          </label>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">
+            <i class="fas fa-lock"></i>
+            Confirmar Contraseña
+          </label>
+          <input type="password" id="confirm-password" placeholder="••••••••" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-full">
+          <i class="fas fa-user-plus"></i>
+          Crear Cuenta
+        </button>
+      </form>
+      
+      <div class="login-footer">
+        <p>¿Ya tienes una cuenta? <a href="login.html">Iniciar Sesión</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Transición suave al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+
+    // Transición suave al hacer clic en enlaces
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.href.includes(window.location.origin)) {
+          e.preventDefault();
+          document.body.style.opacity = '0';
+          setTimeout(() => {
+            window.location.href = this.href;
+          }, 500);
+        }
+      });
+    });
+
+    // Enviar datos del formulario al backend
+    document.getElementById('registroForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      if (password !== confirmPassword) {
+        alert('Las contraseñas no coinciden');
+        return;
+      }
+
+      try {
+        const res = await fetch('https://triumphant-insight-motoconcho.up.railway.app', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, email, telefono, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          alert('Registro exitoso: ' + data.message);
+          window.location.href = 'login.html';
+        } else {
+          alert('Error: ' + data.error);
+        }
+      } catch (error) {
+        console.error('Error de red:', error);
+        alert('Error al conectar con el servidor');
+      }
+    });
+  </script>
+</body>
+</html>

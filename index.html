@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Moto-Ruta</title>
+  <meta name="description" content="Encuentra motoristas de forma rápida y segura en Cristo Rey" />
+  <meta name="author" content="La Parada del Motorista" />
+  <link rel="stylesheet" href="styles-common.css" />
+  <link rel="stylesheet" href="styles-index.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css" />
+</head>
+
+<body>
+  <!-- Barra de navegación -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-text"><span class="logo-text-secondary">Moto</span>Ruta</span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="#conductores" class="nav-link">Conductores</a>
+        <div class="nav-link services-dropdown">
+          Servicios
+          <div class="dropdown-content">
+            <a href="calcular-ruta.html" id="calcularRutaLink" class="dropdown-item">Calcular Ruta</a>
+            <a href="calificar.html" class="dropdown-item">Calificar Servicio</a>
+          </div>
+        </div>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+        <div class="nav-buttons">
+          <a href="#" id="authButton" class="btn btn-outline btn-sm">Iniciar Sesión</a>
+          <a href="registro.html" id="registerButton" class="btn btn-primary btn-sm">Registrarse</a>
+        </div>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">
+        <i data-feather="menu"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sección Hero -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Encuentra tu motoconcho al instante en Cristo Rey</h1>
+        <p>Conecta con motoristas cercanos, calcula rutas y precios, y ahorra tiempo con nuestra aplicación.</p>
+        <div class="hero-buttons">
+          <button id="buscarMotoristaBtn" class="btn btn-secondary">
+            <i data-feather="map-pin"></i>
+            Buscar Motorista
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-gradient"></div>
+  </section>
+
+  <!-- Sección de Características -->
+  <section class="features-section">
+    <div class="container">
+      <h2>¿Por qué elegir MotoRuta?</h2>
+      <p class="section-desc">La forma más rápida y segura de moverse por Cristo Rey</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i data-feather="clock"></i>
+          <h3>Rápido y Eficiente</h3>
+          <p>Encuentra un motorista en minutos y llega a tu destino sin demoras</p>
+        </div>
+        <div class="feature-card">
+          <i data-feather="shield"></i>
+          <h3>Seguridad Garantizada</h3>
+          <p>Conductores verificados y sistema de seguimiento en tiempo real</p>
+        </div>
+        <div class="feature-card">
+          <i data-feather="dollar-sign"></i>
+          <h3>Precios Justos</h3>
+          <p>Tarifas transparentes y calculadas según la distancia</p>
+        </div>
+        <div class="feature-card">
+          <i data-feather="star"></i>
+          <h3>Conductores Calificados</h3>
+          <p>Sistema de calificación y comentarios de usuarios</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Cómo Funciona -->
+  <section class="how-section">
+    <div class="container">
+      <h2>¿Cómo Funciona?</h2>
+      <p class="section-desc">Comienza a usar MotoRuta en tres simples pasos</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Ingresa tu Ubicación</h3>
+          <p>Introduce tu punto de partida y destino en nuestra aplicación</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Elige tu Motorista</h3>
+          <p>Selecciona entre los conductores disponibles cerca de ti</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>¡Disfruta tu Viaje!</h3>
+          <p>Viaja seguro y califica el servicio al finalizar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+ <!-- Sección de Conductores Destacados -->
+<section id="conductores" class="drivers-section">
+  <div class="container">
+    <h2>Conductores Destacados</h2>
+    <p class="section-desc">Conoce a nuestros motoristas mejor calificados</p>
+    <div class="drivers-grid">
+      <div class="driver-card">
+        <div class="driver-header">
+          <img src="Motor1.jpg" alt="Conductor" class="driver-image">
+          <div class="driver-rating">
+          </div>
+        </div>
+        <div class="driver-content">
+          <div class="driver-name-time">
+            <h3 class="driver-name">Juan Pérez</h3>
+            <span class="driver-time">
+              <i data-feather="clock"></i>
+              3 años
+            </span>
+          </div>
+          <div class="driver-info">
+            <span class="driver-vehicle">Honda CBR</span>
+          </div>
+          <div class="driver-recommend">
+            <i data-feather="thumbs-up"></i>
+            98% recomendado
+          </div>
+        </div>
+      </div>
+
+      <div class="driver-card">
+        <div class="driver-header">
+          <img src="motor2.jpg" alt="Conductor" class="driver-image">
+          <div class="driver-rating">
+          </div>
+        </div>
+        <div class="driver-content">
+          <div class="driver-name-time">
+            <h3 class="driver-name">Miguel Rodríguez</h3>
+            <span class="driver-time">
+              <i data-feather="clock"></i>
+              2 años
+            </span>
+          </div>
+          <div class="driver-info">
+            <span class="driver-vehicle">Yamaha YBR</span>
+          </div>
+          <div class="driver-recommend">
+            <i data-feather="thumbs-up"></i>
+            95% recomendado
+          </div>
+        </div>
+      </div>
+
+      <div class="driver-card">
+        <div class="driver-header">
+          <img src="motor3.jpg" alt="Conductor" class="driver-image">
+          <div class="driver-rating">
+          </div>
+        </div>
+        <div class="driver-content">
+          <div class="driver-name-time">
+            <h3 class="driver-name">Carlos Méndez</h3>
+            <span class="driver-time">
+              <i data-feather="clock"></i>
+              4 años
+            </span>
+          </div>
+          <div class="driver-info">
+            <span class="driver-vehicle">Suzuki GN125</span>
+          </div>
+          <div class="driver-recommend">
+            <i data-feather="thumbs-up"></i>
+            96% recomendado
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Pie de página -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h3 class="footer-logo"><span class="text-secondary">Moto</span>Ruta</h3>
+          <p>Conectando motoristas y pasajeros en Cristo Rey para viajes rápidos, seguros y económicos.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Enlaces Rápidos</h3>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="registro.html">Regístrate</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Servicios</h3>
+          <ul>
+            <li><a href="calcular-ruta.html">Calcular distancia y precio</a></li>
+            
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contacto</h3>
+          <ul>
+            <li><i data-feather="map-pin"></i> Cristo Rey, Santo Domingo </li>
+            <li><i data-feather="smartphone"></i> +1 (809) 555-1234</li>
+            <li><i data-feather="mail"></i> techpulse943@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Creacion de token para iniciar y cerrar sesion y tambien para quitar el boton de registro -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace();
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem("token");
+      const authButton = document.getElementById("authButton");
+      const registerButton = document.getElementById("registerButton");
+      const calcularRutaLink = document.getElementById("calcularRutaLink");
+      const buscarMotoristaBtn = document.getElementById("buscarMotoristaBtn");
+
+      if (token) {
+        authButton.textContent = "Cerrar Sesión";
+        authButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("token");
+          window.location.href = "login.html";
+        });
+
+        if (registerButton) registerButton.style.display = "none";
+
+        calcularRutaLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = "calcular-ruta.html";
+        });
+
+        buscarMotoristaBtn.addEventListener("click", () => {
+          window.location.href = "calcular-ruta.html";
+        });
+      } else {
+        authButton.textContent = "Iniciar Sesión";
+        authButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = "login.html";
+        });
+
+        if (registerButton) registerButton.style.display = "";
+
+        calcularRutaLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = "login.html";
+        });
+
+        buscarMotoristaBtn.addEventListener("click", () => {
+          window.location.href = "login.html";
+        });
+      }
+    });
+  </script>
+</body>
+</html>

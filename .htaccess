@@ -1,0 +1,14 @@
+# Habilitar el motor de reescritura
+RewriteEngine On
+
+# Redirigir todas las solicitudes que no sean a archivos o directorios existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ backend/index.js [L]
+
+# Servir archivos estáticos desde la raíz
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Redirigir todas las demás solicitudes a index.html
+RewriteRule ^ index.html [L]

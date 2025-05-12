@@ -1,0 +1,124 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-900); /* Fondo negro */
+  padding: 2rem;
+}
+
+.login-card {
+  background-color: rgba(31, 41, 55, 0.7); /* Fondo semi-transparente oscuro */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--white);
+}
+
+.login-header p {
+  color: var(--gray-400);
+  margin-top: 0.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--gray-400);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.form-group input::placeholder {
+  color: var(--gray-500);
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--gray-400);
+}
+
+.login-footer a {
+  color: var(--primary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.login-footer a:hover {
+  color: var(--primary-light);
+}
+
+
+/* boton de volver al inicio */
+
+.back-home-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid var(--primary);
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-home-btn:hover {
+  background-color: var(--primary);
+  transform: translateX(-5px);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.back-home-btn i {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.back-home-btn:hover i {
+  transform: translateX(-3px);
+}
+
+@media (max-width: 768px) {
+  .back-home-btn {
+    top: 10px;
+    left: 10px;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+

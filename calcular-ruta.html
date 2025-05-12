@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moto-Ruta</title>
+  <link rel="stylesheet" href="styles-common.css" />
+  <link rel="stylesheet" href="styles-calcular-ruta.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-text"><span class="logo-text-secondary">Moto</span>Ruta</span>
+    </a>
+    
+      <nav class="nav-desktop">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="#conductores" class="nav-link">Conductores</a>
+        <div class="nav-link services-dropdown">
+          Servicios
+          <div class="dropdown-content">
+            <a href="calcular-ruta.html" class="dropdown-item">Calcular Ruta</a>
+            <a href="calificar.html" class="dropdown-item">Calificar Servicio</a>
+          </div>
+        </div>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+        <div class="nav-buttons">
+          <a href="login.html" class="btn btn-outline btn-sm" id="authButton" onclick="cerrarSesion()">Cerrar Sesión</a>
+          <a href="registro.html" class="btn btn-primary btn-sm" id="registerButton">Registrarse</a>
+        </div>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">
+        <i data-feather="menu"></i>
+      </button>
+    </div>
+  
+  </header>
+
+  <div id="map"></div>
+
+  <section class="calculator-section">
+    <div class="container">
+      <h2>Calcula tu Ruta</h2>
+      <p class="section-desc">Obtén información precisa sobre distancia, tiempo y precio estimado para tu viaje</p>
+      
+      <div class="calculator-card">
+        <div class="card-header">
+          <i data-feather="route"></i>
+          <h3>Calculadora de Rutas y Tarifas</h3>
+        </div>
+        
+        <div class="card-content">
+          <div class="input-group">
+            <i data-feather="map-pin"></i>
+            <input type="text" id="startLocation" placeholder="Punto de inicio" />
+          </div>
+          
+          <div class="input-group">
+            <i data-feather="map-pin"></i>
+            <input type="text" id="endLocation" placeholder="Punto de destino" />
+          </div>
+          
+          <button class="btn btn-primary btn-full" id="calculateBtn">Calcular Ruta</button>
+          
+          <div class="route-results" id="routeResults" style="display: none;">
+            <div class="route-divider"></div>
+            <div class="route-stats">
+              <div class="stat-item">
+                <i data-feather="map"></i>
+                <p class="stat-label">Distancia</p>
+                <p class="stat-value" id="routeDistance">0 km</p>
+              </div>
+              
+              <div class="stat-item">
+                <i data-feather="clock"></i>
+                <p class="stat-label">Tiempo</p>
+                <p class="stat-value" id="routeTime">0 min</p>
+              </div>
+              
+              <div class="stat-item">
+                <i data-feather="dollar-sign"></i>
+                <p class="stat-label">Precio</p>
+                <p class="stat-value" id="routePrice">RD$0</p>
+              </div>
+            </div>
+            
+            <div class="route-actions">
+              <button class="btn btn-outline btn-half" id="resetRouteBtn">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+ <!-- Creacion de token para iniciar y cerrar sesion y tambien para quitar el boton de registro -->
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem('token');
+      const registerButton = document.getElementById('registerButton');
+      const authButton = document.getElementById('authButton');
+
+      if (!token) {
+        window.location.href = "login.html"; // Redirige a login si no hay token
+        if (registerButton) registerButton.style.display = "";
+        if (authButton) authButton.textContent = "Iniciar Sesión";
+      } else {
+        if (registerButton) registerButton.style.display = "none";
+        if (authButton) authButton.textContent = "Cerrar Sesión";
+      }
+    });
+  </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="mapa.js"></script>
+
+
+
+
+ 
+
+ <!-- CHATBOT CON BOTPRESS --> 
+    
+ <style>
+  /* contenedor padre tenga position: relative */
+  .container {
+    position: relative;
+  }
+  #webchat {
+   position: fixed !important;   /* Use fixed for FAB and chat together */
+   right: 40px;
+   bottom: 120px;                /* Increase this value to move it up */
+   z-index: 9999;
+   width: 370px !important;
+   height: 650px !important;
+   border-radius: 28px !important;
+   overflow: hidden;
+   font-family: 'Montserrat', 'Inter', sans-serif !important;
+ }
+ #webchat .bpWebchat {
+   position: unset;
+   width: 100%;
+   height: 100%;
+   max-height: 100%;
+   max-width: 100%;
+ }
+ @media (max-width: 600px) {
+   #webchat {
+     width: 98vw !important;
+     height: 90vh !important;
+     right: 1vw;
+     bottom: 1vw;
+     border-radius: 18px !important;
+   }
+   #webchat .bpWebchat {
+     border-radius: 18px !important;
+   }
+ }
+</style>
+
+<div id="webchat"></div>
+
+<script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
+<script>
+   window.botpress.init({
+   "botId": "00ea9fab-6c35-4bea-bd95-5f6719332ea9",
+   "configuration": {
+     "botName": "Bot Motochat",
+     "botAvatar": "https://files.bpcontent.cloud/2025/02/19/03/20250219033125-8URKEHTA.jpeg",
+     "botDescription": "Un asistente dedicado para ti ",
+     "color": "#003a73",
+     "variant": "solid",
+     "themeMode": "dark",
+     "fontFamily": "inter",
+     "radius": 4,
+     "additionalStylesheetUrl": "https://files.bpcontent.cloud/2025/05/08/04/20250508043948-KACYVQ53.css"
+   },
+   "clientId": "49464f5e-83af-42a9-90f3-24e0de96ecdb",
+   "selector": "#webchat"
+ });
+</script>
+      
+      
+      
+    
+</body>
+</html>

@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  body {
+    background-color: #f9fafb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-container {
+    background-color: #ffffff;
+    padding: 2.5rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .logo {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+  }
+  
+  .logo span {
+    color: #fbbf24; /* amarillo */
+  }
+  
+  .logo strong {
+    color: #1e3a8a; /* azul oscuro */
+  }
+  
+  .login-container input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.7rem 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .login-container button {
+    width: 100%;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    margin-top: 1.2rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .login-container .extra {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .login-container .extra a {
+    color: #1e3a8a;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
